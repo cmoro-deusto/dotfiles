@@ -30,4 +30,5 @@ au BufReadPost *.py colorscheme molokai
 au BufReadPost *.html colorscheme monokai
 au BufReadPost *.java colorscheme monokai
 au BufReadPost *.php colorscheme monokai
-call pathogen#infect()
+
+set laststatus=2
