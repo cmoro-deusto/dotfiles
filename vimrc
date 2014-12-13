@@ -21,6 +21,7 @@ autocmd! bufwritepre * set expandtab | retab! 4
 autocmd! bufwritepost * set noexpandtab | retab! 4
 
 filetype on
+set nocompatible
 filetype plugin indent on
 
 au BufReadPost *.twig colorscheme koehler 
