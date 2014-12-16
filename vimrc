@@ -31,5 +31,6 @@ au BufReadPost *.py colorscheme molokai
 au BufReadPost *.html colorscheme monokai
 au BufReadPost *.java colorscheme monokai
 au BufReadPost *.php colorscheme monokai
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 set laststatus=2
