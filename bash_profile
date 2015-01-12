@@ -5,3 +5,4 @@ export PS1="\[\033]0;\u@\h:\w\007\]\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\03
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
+alias dorma='sudo docker rm `sudo docker ps -a -q -f status=exited`' # Delete all docker stopped containers
