@@ -6,3 +6,4 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 #alias ls='ls -GFh' # Comment this out if ubuntu refuses to show colors on ls
 alias dorma='sudo docker rm `sudo docker ps -a -q -f status=exited`' # Delete all docker stopped containers
+alias dormi='docker images | grep "<none>"| awk '\''{print $3}'\'' | xargs docker rmi' # Delete all docker untagged images
