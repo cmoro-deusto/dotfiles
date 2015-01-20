@@ -9,3 +9,4 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 alias dorma='sudo docker rm `sudo docker ps -a -q -f status=exited`' # Delete all docker stopped containers
 alias dormi='sudo docker images | grep "<none>"| awk '\''{print $3}'\'' | xargs sudo docker rmi' # Delete all docker untagged images
 alias dokill='sudo docker kill $(sudo docker ps -q)'
+alias dops='sudo docker ps'
