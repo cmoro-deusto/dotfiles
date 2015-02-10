@@ -6,10 +6,10 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 #alias ls='ls -GFh' # Comment this out if ubuntu refuses to show colors on ls
 # Remove sudos if running on boot2docker/osx
-alias dorma='sudo docker rm `sudo docker ps -a -q -f status=exited`' # Delete all docker stopped containers
-alias dormi='sudo docker images | grep "<none>"| awk '\''{print $3}'\'' | xargs sudo docker rmi' # Delete all docker untagged images
-alias dokill='sudo docker kill $(sudo docker ps -q)'
-alias dops='sudo docker ps'
-alias doi='sudo docker images'
-alias dox='sudo docker exec -it' # Use dox <container_id> command
-function dologs() { sudo docker logs "$@" ;}
+alias dorma='docker rm `docker ps -a -q -f status=exited`' # Delete all docker stopped containers
+alias dormi='docker images | grep "<none>"| awk '\''{print $3}'\'' | xargs docker rmi' # Delete all docker untagged images
+alias dokill='docker kill $(docker ps -q)'
+alias dops='docker ps'
+alias doi='docker images'
+alias dox='docker exec -it' # Use dox <container_id> command
+function dologs() { docker logs "$@" ;}
