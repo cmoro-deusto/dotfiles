@@ -13,3 +13,4 @@ alias dops='docker ps'
 alias doi='docker images'
 alias dox='docker exec -it' # Use dox <container_id> command
 function dologs() { docker logs "$@" ;}
+alias fuck='sudo $(history -p \!\!)'
