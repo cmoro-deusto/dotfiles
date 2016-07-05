@@ -1,4 +1,4 @@
-vim-hackernews
+vim-hackernews [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ryanss/vim-hackernews/raw/master/LICENSE) [![Version](https://img.shields.io/badge/version-0.2-orange.svg)](https://github.com/ryanss/vim-hackernews/releases/tag/v0.2) [![Build Status](https://img.shields.io/travis/ryanss/vim-hackernews.svg)](https://travis-ci.org/ryanss/vim-hackernews)
 ==============
 
 Browse [Hacker News](https://news.ycombinator.com) inside Vim.
@@ -16,12 +16,39 @@ as text.
 Basic Usage
 -----------
 
-* Open the Hacker News home page in Vim by executing the `:HackerNews` command
+* Open the Hacker News front page in Vim by executing the `:HackerNews` command
+* The HackerNews command takes an optional parameter to view items other
+  than the top stories on the front page:
+    * `:HackerNews ask`
+    * `:HackerNews show`
+    * `:HackerNews shownew`
+    * `:HackerNews jobs`
+    * `:HackerNews best`
+    * `:HackerNews active`
+    * `:HackerNews newest`
+    * `:HackerNews noobstories`
 * Press lowercase `o` to open links in Vim
 * Press uppercase `O` to open links in default web browser
-* Press lowercase `u` to go back (or whatever you've remapped `undo` to)
-* Press `Ctrl+r` to go forward (or whatever you're remapped `redo` to)
+* Numbered lines with story titles on the front page link to the story url
+* Comment lines on the front page link to the comments url
+* Press uppercase `F` to fold current comment thread
+* Press lowercase `u` to go back
+* Press `Ctrl+r` to go forward
 * Execute the `:bd` command to close and remove the Hacker News buffer
+
+
+Enhanced Motions
+----------------
+
+Uppercase `J` and `K` are mapped to helpful new motions based on what type of
+content is on the screen:
+
+* Move to next/prev item when viewing the front page. (If the cursor is on a
+  numbered line with story title the cursor will move to the next/prev numbered
+  line with story title. If the cursor is on a comment line it will move to the
+  next/prev comment line.)
+* Move to next/prev comment when viewing comments.
+* Move to next/prev paragraph when viewing the text version of articles.
 
 
 Installation
@@ -43,17 +70,12 @@ NeoBundle 'ryanss/vim-hackernews'
 ```
 
 
-Roadmap
--------
+Running Tests
+-------------
 
-* Add option to format text like different programming languages to make it
-  less obvious that you are reading Hacker News in Vim
-* Add configuration value for custom text width
-* Add configuration value to specify external browser
-* Move away from unofficial API by creating server to cache official Hacker
-  News API data
-* Move away from fuckyeahmarkdown.com by creating server that uses
-  python-readability to convert article HTML to text
+```bash
+$ vim -c Vader! tests.vader
+```
 
 
 Contributions
