@@ -5,7 +5,7 @@
 "  Author:  ryanss <ryanssdev@icloud.com>
 "  Website: https://github.com/ryanss/vim-hackernews
 "  License: MIT (see LICENSE file)
-"  Version: 0.1.1
+"  Version: 0.2 (April 26, 2015)
 
 
 if exists("b:current_syntax")
@@ -13,8 +13,9 @@ if exists("b:current_syntax")
 endif
 
 
-" Hide hacker news item id at end of main page lines
+" Hide hacker news item id or url at end of front page lines
 syn match Ignore /\s\[[0-9]\{3,}\]$/
+syn match Ignore /\s\[http.\+\] $/
 
 " Make sure `Ignore` highlight group is hidden
 " Some colorschemes do not hide the `Ignore` group (ex. Solarized)
@@ -31,19 +32,24 @@ endtry
 
 " Remove emphesis from all components of main page item except title
 syn match Comment /^\s*[0-9]\{1,2}\.\s/
-syn match Comment /\s(\S\+\.\S\+)/
-syn match Comment /^\s\{4}.*ago/
+syn match Comment /\s([^\[]\S\+\.\S\+)/
+syn match Comment /^\s\{4}[0-9an]\+\s.\+\sago/
+syn match Comment /^\s\{4}[0-9an]\+\spoints.\+\s\s|.*comments/
 syn match Comment /^.*ago\s|.*comments/
-syn match Comment /^[0-9]\+\s.\+\sago$/
+syn match Comment /^[0-9an]\+\s.\+\sago$/
 
 " Comment titles
-syn match Comment /^\s*Comment.*$/
+syn match Comment /^\s*Comment\sby.\+ago:/ contains=Question
 
 " Highlight links
 syn region Constant start="\[http" end="\]"
 
+" Italics <i> tags
+syn match Italics /\v<_\_.{-}_>/
+highlight Italics gui=italic
+
 " Highlight code blocks
-syn region Statement start="^\s\+ " end="^\s\+ "
+syn region Statement start="^ " end="^ "
 
 " Highlight Hacker News header orange
 syn match Title /^┌.*$/

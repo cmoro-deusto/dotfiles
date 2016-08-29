@@ -5,27 +5,46 @@
 "  Author:  ryanss <ryanssdev@icloud.com>
 "  Website: https://github.com/ryanss/vim-hackernews
 "  License: MIT (see LICENSE file)
-"  Version: 0.1.1
+"  Version: 0.2 (April 26, 2015)
 
 
-if !has('python')
-    echo "HackerNews.vim Error: Requires Vim compiled with +python"
-    finish
+" Filetype plugins need to be enabled
+filetype plugin on
+
+" Load ftplugin when opening .hackernews buffer
+au! BufRead,BufNewFile *.hackernews set filetype=hackernews
+
+" Prevent syntax highlighting issues in long comment threads with code blocks
+au! BufEnter *.hackernews syntax sync fromstart
+
+
+" Set required defaults
+if !exists("g:hackernews_stories")
+    let g:hackernews_stories = 'news'
+endif
+
+if !exists("g:hackernews_marks")
+    let g:hackernews_marks = {}
 endif
 
 
-" Filetype plugins and syntax highlighting should be enabled
-filetype plugin on
-syntax on
+function! HackerNews(...)
+    if a:0 > 0
+        let available_lists = ['news', 'newest', 'ask', 'show', 'shownew',
+                              \'jobs', 'best', 'active', 'noobstories']
+        if index(available_lists, a:1) >= 0
+            let g:hackernews_stories = a:1
+            let stories = a:1
+        else
+            let g:hackernews_stories = 'news'
+            let stories = ''
+        end
+    else
+        let g:hackernews_stories = 'news'
+        let stories = ''
+    end
+    execute "edit " . stories . ".hackernews"
+    normal! gg
+endfunction
 
-
-" Import Python code
-execute "python import sys"
-execute "python sys.path.append(r'" . expand("<sfile>:p:h") . "')"
-execute "python from hackernews import hacker_news, hacker_news_link, recall_pos"
-
-
-command! HackerNews python hacker_news()
-
-
-au! BufRead,BufNewFile *.hackernews set filetype=hackernews
+command! -nargs=? HackerNews call HackerNews(<q-args>)
